@@ -1,62 +1,61 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const Card = () => {
+const Card = ({id, title, primaryColor, orientation, onPress}) => {
+  console.log({orientation});
   return (
-    <View style={styles.container}>
-      <View style={styles.header} />
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.container,
+        {
+          aspectRatio: orientation === 'PORTRAIT' ? 1 / 1.5 : 2,
+        },
+      ]}>
+      <View style={[styles.header, {backgroundColor: primaryColor}]} />
       <View style={styles.contentWrapper}>
-        <View style={styles.circle}></View>
-        <Text style={styles.content}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        </Text>
+        <Text style={styles.content}>{`${id}. ${title}`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export default Card;
+
 const cardBorderRadius = 20;
-const circle = 40;
+
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    marginHorizontal: 10,
     borderRadius: cardBorderRadius,
-    backgroundColor: 'white',
-    width: Dimensions.get('screen').width / 3,
-    marginBottom: 10,
+    backgroundColor: '#FFF',
 
-    shadowColor: 'black',
+    //SHADOW
+    shadowColor: '#000',
     // IOS
     shadowOpacity: 0.1,
     shadowRadius: 5,
 
     // Android
     elevation: 7,
-    marginHorizontal: 'auto',
   },
   header: {
-    height: 50,
-    backgroundColor: '#FDECF2',
+    flex: 1,
+    borderTopLeftRadius: cardBorderRadius,
+    borderTopRightRadius: cardBorderRadius,
   },
 
   contentWrapper: {
+    flex: 3,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
     borderRadius: cardBorderRadius,
-    paddingHorizontal: 10,
-    paddingTop: 30,
-    backgroundColor: 'white',
     transform: [{translateY: -10}],
-  },
-  circle: {
-    backgroundColor: '#EA4C88',
-    width: circle,
-    borderRadius: circle / 2,
-    aspectRatio: 1,
-    position: 'absolute',
-    top: 0,
-    transform: [{translateY: -circle / 2}],
-    left: 10,
+    backgroundColor: '#FFF',
   },
   content: {
-    fontSize: 14,
+    fontWeight: '600',
+    fontSize: 20,
   },
 });
