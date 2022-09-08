@@ -21,6 +21,7 @@ const App = () => {
     return width < height ? 'PORTRAIT' : 'LANDSCAPE';
   };
   const [orientation, setOrientation] = useState(getDeviceMode());
+  const [flag, setFlag] = useState(false);
   const [chosenCard, setChosenCard] = useState(null);
   const data = [
     {
@@ -87,19 +88,18 @@ const App = () => {
   }, []);
 
   const handleOnPress = useCallback(async item => {
+    if (flag) return;
+    console.log('hello');
     const {id: question_id} = item;
     setChosenCard(item);
-    const response = await fetch(
-      'https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/question',
-      {
-        method: 'PUT',
-        body: JSON.stringify({question_id}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    setFlag(true);
+    await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/add-question', {
+      method: 'POST',
+      body: JSON.stringify({question_id}),
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
-    const myJson = await response.json();
+    });
   }, []);
   return (
     <SafeAreaView style={styles.container}>
@@ -125,6 +125,7 @@ const App = () => {
       <Modal
         visible={chosenCard !== null}
         animationType="fade"
+        onDismiss={() => setDismiss(false)}
         transparent={true}>
         <Pressable
           onPress={() => setChosenCard(null)}
@@ -171,6 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 9,
   },
   modalView: {
     width: '80%',
