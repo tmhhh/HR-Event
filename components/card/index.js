@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const Card = ({id, title, primaryColor, orientation, onPress}) => {
-  console.log({orientation});
   return (
     <TouchableOpacity
       onPress={onPress}

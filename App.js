@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -86,6 +86,21 @@ const App = () => {
     });
   }, []);
 
+  const handleOnPress = useCallback(async item => {
+    const {id: question_id} = item;
+    setChosenCard(item);
+    const response = await fetch(
+      'https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/question',
+      {
+        method: 'PUT',
+        body: JSON.stringify({question_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const myJson = await response.json();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -102,9 +117,7 @@ const App = () => {
             <Card
               {...item}
               orientation={orientation}
-              onPress={() => {
-                setChosenCard(item);
-              }}
+              onPress={() => handleOnPress(item)}
             />
           )}
         />
@@ -165,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 20,
     overflow: 'hidden',
-
+    zIndex: 100,
     //SHADOW
     shadowColor: '#000',
     shadowOffset: {
