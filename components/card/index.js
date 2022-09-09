@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import Device from 'react-native-device-info';
+const isTablet = Device.isTablet();
+
 const Card = ({id, title, primaryColor, orientation, onPress}) => {
   return (
     <TouchableOpacity
@@ -55,6 +58,6 @@ const styles = StyleSheet.create({
   },
   content: {
     fontWeight: '600',
-    fontSize: 20,
+    fontSize: isTablet ? 20 : 14,
   },
 });

@@ -11,11 +11,14 @@ import {
   Text,
   View,
 } from 'react-native';
+
+import Device from 'react-native-device-info';
+
 import Card from './components/card';
 
+const isTablet = Device.isTablet();
 const App = () => {
   /*  */
-
   const getDeviceMode = () => {
     const {width, height} = Dimensions.get('window');
     return width < height ? 'PORTRAIT' : 'LANDSCAPE';
@@ -89,11 +92,12 @@ const App = () => {
 
   const handleOnPress = useCallback(async item => {
     if (flag) return;
-    console.log('hello');
     const {id: question_id} = item;
+
     setChosenCard(item);
     setFlag(true);
-    await fetch('https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/add-question', {
+
+    await fetch('https://hr-event-osd.herokuapp.com/question', {
       method: 'POST',
       body: JSON.stringify({question_id}),
       headers: {
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     padding: 20,
-    fontSize: 20,
+    fontSize: isTablet ? 20 : 14,
   },
   modalImage: {
     flex: 1,
