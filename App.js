@@ -63,24 +63,24 @@ const App = () => {
       primaryColor: '#D9E5FF',
       secondaryColor: '',
     },
-    {
-      id: 7,
-      title: 'How are you today?',
-      primaryColor: '#FDEDF2',
-      secondaryColor: '',
-    },
-    {
-      id: 8,
-      title: 'How are you today?',
-      primaryColor: '#EAFBEE',
-      secondaryColor: '',
-    },
-    {
-      id: 9,
-      title: 'How are you today?',
-      primaryColor: '#FDEFEF',
-      secondaryColor: '',
-    },
+    // {
+    //   id: 7,
+    //   title: 'How are you today?',
+    //   primaryColor: '#FDEDF2',
+    //   secondaryColor: '',
+    // },
+    // {
+    //   id: 8,
+    //   title: 'How are you today?',
+    //   primaryColor: '#EAFBEE',
+    //   secondaryColor: '',
+    // },
+    // {
+    //   id: 9,
+    //   title: 'How are you today?',
+    //   primaryColor: '#FDEFEF',
+    //   secondaryColor: '',
+    // },
   ];
 
   /*  */
@@ -113,7 +113,7 @@ const App = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(res => res.json().then(result => console.log({result})));
+    });
   }, []);
   return (
     <SafeAreaView style={styles.container}>
@@ -140,7 +140,8 @@ const App = () => {
         visible={chosenCard !== null}
         animationType="fade"
         onDismiss={() => setFlag(false)}
-        transparent={true}>
+        transparent={true}
+        statusBarTranslucent>
         <Pressable
           onPress={() => setChosenCard(null)}
           style={styles.centeredView}>
@@ -186,15 +187,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 9,
   },
   modalView: {
-    width: '80%',
-    height: '80%',
+    width: '90%',
+    height: '90%',
     backgroundColor: '#FFF',
-    borderRadius: 20,
+    borderRadius: 10,
     overflow: 'hidden',
-    zIndex: 100,
     //SHADOW
     shadowColor: '#000',
     shadowOffset: {

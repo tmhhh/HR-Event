@@ -11,7 +11,7 @@ const Card = ({id, title, primaryColor, orientation, onPress}) => {
       style={[
         styles.container,
         {
-          aspectRatio: orientation === 'PORTRAIT' ? 1 / 1.5 : 2,
+          aspectRatio: orientation === 'PORTRAIT' ? 1 / 2 : 1.3,
         },
       ]}>
       <View style={[styles.header, {backgroundColor: primaryColor}]} />
@@ -24,7 +24,7 @@ const Card = ({id, title, primaryColor, orientation, onPress}) => {
 
 export default Card;
 
-const cardBorderRadius = 20;
+const cardBorderRadius = 10;
 
 const styles = StyleSheet.create({
   container: {
