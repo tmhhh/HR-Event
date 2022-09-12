@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
 
   contentWrapper: {
     flex: 3,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+    padding: 20,
     borderRadius: cardBorderRadius,
     transform: [{translateY: -10}],
     backgroundColor: '#FFF',
