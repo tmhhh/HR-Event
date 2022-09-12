@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -18,13 +18,13 @@ import Card from './components/card';
 
 const isTablet = Device.isTablet();
 const App = () => {
-  /*  */
+  /  /;
   const getDeviceMode = () => {
     const {width, height} = Dimensions.get('window');
     return width < height ? 'PORTRAIT' : 'LANDSCAPE';
   };
   const [orientation, setOrientation] = useState(getDeviceMode());
-  const [flag, setFlag] = useState(false);
+  const flag = useRef(false);
   const [chosenCard, setChosenCard] = useState(null);
   const data = [
     {
@@ -83,7 +83,7 @@ const App = () => {
     // },
   ];
 
-  /*  */
+  /  /;
   useEffect(() => {
     Dimensions.addEventListener('change', () => {
       setOrientation(getDeviceMode());
@@ -91,11 +91,11 @@ const App = () => {
   }, []);
 
   const handleOnPress = useCallback(async item => {
-    if (flag) return;
+    if (flag.current) return;
 
     const {id: question_id} = item;
+    flag.current = true;
     setChosenCard(item);
-    setFlag(true);
 
     //nodeServerRequest
     fetch('https://hr-event-osd.herokuapp.com/question', {
@@ -139,11 +139,13 @@ const App = () => {
       <Modal
         visible={chosenCard !== null}
         animationType="fade"
-        onDismiss={() => setFlag(false)}
         transparent={true}
         statusBarTranslucent>
         <Pressable
-          onPress={() => setChosenCard(null)}
+          onPress={() => {
+            setChosenCard(null);
+            flag.current = false;
+          }}
           style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text numberOfLines={2} style={styles.modalText}>
