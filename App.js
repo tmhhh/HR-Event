@@ -92,18 +92,28 @@ const App = () => {
 
   const handleOnPress = useCallback(async item => {
     if (flag) return;
-    const {id: question_id} = item;
 
+    const {id: question_id} = item;
     setChosenCard(item);
     setFlag(true);
 
-    await fetch('https://hr-event-osd.herokuapp.com/question', {
+    //nodeServerRequest
+    fetch('https://hr-event-osd.herokuapp.com/question', {
       method: 'POST',
       body: JSON.stringify({question_id}),
       headers: {
         'Content-Type': 'application/json',
       },
     });
+
+    //xanoServerRequest
+    fetch('https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/add-question', {
+      method: 'POST',
+      body: JSON.stringify({question_id}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json().then(result => console.log({result})));
   }, []);
   return (
     <SafeAreaView style={styles.container}>
@@ -129,7 +139,7 @@ const App = () => {
       <Modal
         visible={chosenCard !== null}
         animationType="fade"
-        onDismiss={() => setDismiss(false)}
+        onDismiss={() => setFlag(false)}
         transparent={true}>
         <Pressable
           onPress={() => setChosenCard(null)}
