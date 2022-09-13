@@ -146,7 +146,7 @@ const App = () => {
           }}
           style={styles.centeredView}>
           <>
-            <Text style={[styles.modalHeader, styles.modalText]}>
+            <Text numberOfLines={1} style={styles.modalHeader}>
               Solution - {chosenCard?.propose}
             </Text>
             <View style={styles.modalView}>
@@ -203,12 +203,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalHeader: {
+    fontSize: isTablet ? 20 : 14,
+    fontWeight: '700',
+    textAlign: 'center',
     color: '#FFF',
-    fontWeight: '600',
   },
   modalText: {
     padding: 10,
-    fontSize: isTablet ? 20 : 14,
+    fontSize: isTablet ? 18 : 14,
   },
   modalImage: {
     flex: 1,

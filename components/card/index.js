@@ -4,7 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Device from 'react-native-device-info';
 const isTablet = Device.isTablet();
 
-const Card = ({id, title, primaryColor, orientation, onPress}) => {
+const Card = ({title, primaryColor, orientation, onPress}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -16,7 +16,7 @@ const Card = ({id, title, primaryColor, orientation, onPress}) => {
       ]}>
       <View style={[styles.header, {backgroundColor: primaryColor}]} />
       <View style={styles.contentWrapper}>
-        <Text style={styles.content}>{`${id}. ${title}`}</Text>
+        <Text style={styles.content}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
   },
   content: {
     fontWeight: '600',
-    fontSize: isTablet ? 20 : 14,
+    fontSize: isTablet ? 18 : 14,
   },
 });
