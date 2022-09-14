@@ -25,59 +25,50 @@ const isTablet = Device.isTablet();
 const data = [
   {
     id: 1,
-    title:
-      'Your recruiters struggle to find potential and qualified candidates',
-    primaryColor: '#FDECF2',
-    solution:
-      'Interest Profile and Preference Profile from the candidates will help your recruiters understand more about them',
+    title: 'Your recruiters struggle to ',
+    boldTitle: 'find potential and qualified candidates',
+    boldPlaceAhead: false,
     propose: 'bravoGROWTH (Interest Profile - Preference Profile)',
     source: image1,
   },
   {
     id: 2,
-    title: 'Your recruiters struggle to manage the recruitment process',
-    primaryColor: '#F2F2F2',
-    solution:
-      'Your recruiters can track the recruitment stage of each candidate easily in bravoTALENT',
+    title: 'Your recruiters struggle to ',
+    boldTitle: 'manage the recruitment process',
+    boldPlaceAhead: false,
     propose: 'bravoTALENT',
     source: image2,
   },
   {
     id: 3,
-    title:
-      'Your managers and team leaders struggle to understand team members and their potential strengths and motivation grow',
-    primaryColor: '#FEF4E0',
-    solution: `In bravoGROWTH, you can understand your employee's profiles, abilities as well as how they are fit into the team`,
-    propose: 'bravoGROWTH (TeamMap, Interest Profile - Preference Profile)',
+    title: 'Your managers and team leaders struggle to ',
+    boldTitle:
+      'understand team members and their potential strengths and motivation',
+    boldPlaceAhead: false,
     source: image3,
   },
   {
     id: 4,
-    title:
-      'It takes too much time to manage the candidate’s info and CV manually',
-    primaryColor: '#D9E5FF',
-    solution:
-      'With our AI support, your recruiters can easily add candidates into the system by uploading their CVs',
+    title: 'It takes too much time to ',
+    boldTitle: 'manage the candidate’s info and CV manually',
+    boldPlaceAhead: false,
     propose: 'bravoTALENT',
     source: image4,
   },
   {
     id: 5,
-    title:
-      'It takes too much effort to manage large volumes of candidate CVs received from different job boards',
-    primaryColor: '#FFFCE6',
-    solution:
-      'We support integration with different job boards to scan CVs from them and centralize the candidates into bravoTALENT platform',
+    title: 'It takes too much effort to ',
+    boldTitle:
+      'manage large volumes of candidate CVs received from different job boards',
+    boldPlaceAhead: false,
     propose: 'bravoTALENT',
     source: image5,
   },
   {
     id: 6,
-    title:
-      'Generating performance/insight reports manually takes too much time.',
-    primaryColor: '#d7e9f7',
-    solution:
-      'In bravoINSIGHTS, you are supported with our built-in dashboards. You can also customize and add the dashboards following your needs',
+    title: 'takes too much time',
+    boldTitle: 'Generating performance/insight reports manually',
+    boldPlaceAhead: true,
     propose: 'bravoINSIGHTS',
     source: image6,
   },
@@ -111,7 +102,7 @@ const App = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).catch(err);
+    }).catch(err => null);
 
     //xanoServerRequest
     fetch('https://x8ki-letl-twmt.n7.xano.io/api:Sq3HGbWD/add-question', {
@@ -120,7 +111,7 @@ const App = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).catch(err);
+    }).catch(err => null);
   }, []);
   return (
     <SafeAreaView style={styles.container}>

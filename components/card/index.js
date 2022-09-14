@@ -2,9 +2,10 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import Device from 'react-native-device-info';
+import LinearGradient from 'react-native-linear-gradient';
 const isTablet = Device.isTablet();
 
-const Card = ({title, primaryColor, orientation, onPress}) => {
+const Card = ({title, boldTitle, boldPlaceAhead, orientation, onPress}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -14,9 +15,28 @@ const Card = ({title, primaryColor, orientation, onPress}) => {
           aspectRatio: orientation === 'PORTRAIT' ? 1 / 2 : 1.3,
         },
       ]}>
-      <View style={[styles.header, {backgroundColor: primaryColor}]} />
+      <LinearGradient
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        colors={['#20B4B3', '#3C7CBE']}
+        style={styles.header}
+      />
       <View style={styles.contentWrapper}>
-        <Text style={styles.content}>{title}</Text>
+        {!boldPlaceAhead ? (
+          <Text style={styles.content}>
+            {title}
+            <Text style={[styles.content, styles.boldContent]}>
+              {boldTitle}{' '}
+            </Text>
+          </Text>
+        ) : (
+          <Text style={styles.content}>
+            <Text style={[styles.content, styles.boldContent]}>
+              {boldTitle}{' '}
+            </Text>
+            {title}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -56,7 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   content: {
-    fontWeight: '600',
-    fontSize: isTablet ? 18 : 14,
+    fontWeight: '400',
+    fontSize: isTablet ? 28 : 14,
+  },
+  boldContent: {
+    fontWeight: '700',
   },
 });
